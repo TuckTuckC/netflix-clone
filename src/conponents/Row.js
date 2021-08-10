@@ -12,6 +12,7 @@ function Row({title, fetchUrl}) {
         async function fetchData() {
             const request = await axios.get(fetchUrl);
             setMovies(request.data.results);
+            console.log(request.data.results);
             return request;
         }
         fetchData()
@@ -24,7 +25,8 @@ function Row({title, fetchUrl}) {
                 <div className='row__posters'>
                     {movies.map(movie => (
                         <img 
-                            className='row_poster'
+                            key={movie.id}
+                            className='row__poster'
                             src={`${base_url}${movie.poster_path}`} 
                             alt={movie.name} 
                         />
